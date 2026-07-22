@@ -12,7 +12,7 @@ export default function TrackAppointment() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    const socket = io('');
+    const socket = io('https://mediq-production-5791.up.railway.app');
     
     socket.on('queue_update', () => {
       // If we are currently tracking someone, re-fetch their data silently

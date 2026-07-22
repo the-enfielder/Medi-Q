@@ -8,7 +8,7 @@ export default function LiveTV() {
 
   const fetchQueues = async (isUpdate = false) => {
     try {
-      const res = await fetch('/api/departments/queues');
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/departments/queues');
       if (res.ok) {
         const data = await res.json();
         
@@ -36,7 +36,7 @@ export default function LiveTV() {
 
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
 
-    const socket = io('');
+    const socket = io('https://mediq-production-5791.up.railway.app');
     socket.on('queue_update', () => {
       fetchQueues(true);
     });

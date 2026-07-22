@@ -20,7 +20,7 @@ export default function ReceptionDashboard() {
 
   const fetchPending = async () => {
     try {
-      const res = await fetch('/api/appointments/pending', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/appointments/pending', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

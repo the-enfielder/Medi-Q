@@ -32,7 +32,7 @@ export default function BookAppointment() {
     
     try {
       toast.loading('Uploading file...', { id: 'upload' });
-      const res = await fetch('/api/upload', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/upload', {
         method: 'POST',
         body: formData
       });
@@ -89,7 +89,7 @@ export default function BookAppointment() {
   };
 
   useEffect(() => {
-    fetch('/api/departments')
+    fetch('https://mediq-production-5791.up.railway.app/api/departments')
       .then(res => res.json())
       .then(data => setDepartments(data))
       .catch(err => console.error(err));
@@ -110,7 +110,7 @@ export default function BookAppointment() {
     setError('');
 
     try {
-      const response = await fetch('/api/appointments/book', {
+      const response = await fetch('https://mediq-production-5791.up.railway.app/api/appointments/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

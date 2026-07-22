@@ -36,7 +36,7 @@ function LandingPage() {
     setScanStatus({ loading: true, error: '', success: '' });
     
     try {
-      const res = await fetch('/api/appointments/checkin', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/appointments/checkin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tokenNumber: scanToken.toUpperCase() })

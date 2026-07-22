@@ -21,7 +21,7 @@ export default function DoctorDashboard() {
     fetchQueue();
 
     // Listen for queue updates from reception/other doctors
-    const socket = io('');
+    const socket = io('https://mediq-production-5791.up.railway.app');
     socket.on('queue_update', () => {
       fetchQueue(); // Refresh queue when updated
     });
@@ -33,7 +33,7 @@ export default function DoctorDashboard() {
 
   const fetchQueue = async () => {
     try {
-      const res = await fetch('/api/doctor/queue', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/doctor/queue', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

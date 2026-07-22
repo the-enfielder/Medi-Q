@@ -27,7 +27,7 @@ export default function UnifiedDashboard() {
   const [pharmacyQueue, setPharmacyQueue] = useState<any[]>([]);
 
   const fetchStats = () => {
-    fetch('/api/admin/stats', {
+    fetch('https://mediq-production-5791.up.railway.app/api/admin/stats', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -37,7 +37,7 @@ export default function UnifiedDashboard() {
 
   const fetchQueue = async () => {
     try {
-      const res = await fetch('/api/doctor/queue', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/doctor/queue', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -50,8 +50,8 @@ export default function UnifiedDashboard() {
   const fetchAnalyticsAndPharmacy = async () => {
     try {
       const [analyticsRes, pharmacyRes] = await Promise.all([
-        fetch('/api/admin/analytics', { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('/api/admin/pharmacy/pending', { headers: { 'Authorization': `Bearer ${token}` } })
+        fetch('https://mediq-production-5791.up.railway.app/api/admin/analytics', { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch('https://mediq-production-5791.up.railway.app/api/admin/pharmacy/pending', { headers: { 'Authorization': `Bearer ${token}` } })
       ]);
       if (analyticsRes.ok) setAnalytics(await analyticsRes.json());
       if (pharmacyRes.ok) setPharmacyQueue(await pharmacyRes.json());
@@ -64,7 +64,7 @@ export default function UnifiedDashboard() {
     setHistoryLoading(true);
     setShowHistory(true);
     try {
-      const res = await fetch('/api/admin/history', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/admin/history', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) setHistoryData(await res.json());
@@ -85,7 +85,7 @@ export default function UnifiedDashboard() {
     fetchQueue();
     fetchAnalyticsAndPharmacy();
 
-    const socket = io('');
+    const socket = io('https://mediq-production-5791.up.railway.app');
     socket.on('queue_update', () => {
       fetchStats();
       fetchQueue();

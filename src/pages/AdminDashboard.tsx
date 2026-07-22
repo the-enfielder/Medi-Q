@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   const [scanStatus, setScanStatus] = useState({ loading: false, error: '', success: '' });
 
   const fetchStats = () => {
-    fetch('/api/admin/stats', {
+    fetch('https://mediq-production-5791.up.railway.app/api/admin/stats', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -32,7 +32,7 @@ export default function AdminDashboard() {
     setScanStatus({ loading: true, error: '', success: '' });
     
     try {
-      const res = await fetch('/api/admin/checkin', {
+      const res = await fetch('https://mediq-production-5791.up.railway.app/api/admin/checkin', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
